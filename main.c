@@ -2,18 +2,19 @@
 #include <stdlib.h>
 #include <math.h>
 
-typedef struct{
+typedef struct {
     float x1, y1;
     float x2, y2;
     float x3, y3;
 } triangle;
 
-void init(triangle in)
+int init(triangle& in)
 {
     printf("Init data\n");
     in.x1 = 1; in.y1 = 1;
     in.x2 = 2.5; in.y2 = 3.5;
     in.x3 = 7.4; in.y3 = 2.6;
+    return 0;
 }
 
 void read(triangle in)
@@ -37,14 +38,14 @@ void display(triangle in)
     printf("\nOutput data:\n");
     printf(" x1 = %g, y1 = %g", in.x1, in.y1);
     printf("\n x2 = %g, y2 = %g", in.x2, in.y2);
-    printf("\n x3 = %g, y3 = %g", in.x3, in.y3);
+    printf("\n x3 = %g, y3 = %g\n", in.x3, in.y3);
 }
 
 triangle add(triangle in, triangle in2)
 {
     triangle out;
-    printf("\n Adding the triangles\n");
-    printf(" New triangle:\n");
+    printf("\nAdding the triangles\n");
+    printf("New triangle:");
     out.x1 = in.x1 + in2.x1;
     out.y1 = in.y1 + in2.y1;
     out.x2 = in.x2 + in2.x2;
@@ -56,16 +57,16 @@ triangle add(triangle in, triangle in2)
 
 double perimeter(triangle in)
 {
-    return (sqrt(pow((in.x2 - in.x1),2)) + sqrt(pow((in.y2 - in.y1),2))) + (sqrt(pow((in.x3 - in.x2),2)) + sqrt(pow((in.y3 - in.y2),2))) + (sqrt(pow((in.x1 - in.x3),2)) + sqrt(pow((in.y1 - in.y3),2)));
+    return (sqrt(pow((in.x2 - in.x1),2.0)) + sqrt(pow((in.y2 - in.y1),2.0))) + (sqrt(pow((in.x3 - in.x2),2.0)) + sqrt(pow((in.y3 - in.y2),2.0))) + (sqrt(pow((in.x1 - in.x3),2.0)) + sqrt(pow((in.y1 - in.y3),2.0)));
 }
 
 int main()
 {
     triangle first, second;
-    init(&first);
+    init(first);
     display(first);
     double perim = perimeter(first);
-    printf("\n\nPerimiter first triangle: %g\n", perim);
+    printf("\nPerimiter first triangle: %g\n", perim);
     read(second);
     triangle third = add(first, second);
     display(third);
